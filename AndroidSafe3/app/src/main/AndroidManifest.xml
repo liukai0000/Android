@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.chixi.androidsafe">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fangdao.Dialog.SetUp1Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fangdao.Dialog.SetUp2Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fangdao.Dialog.SetUp3Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fangdao.Dialog.SetUp4Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fangdao.Dialog.LostFindActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fangdao.Dialog.ContactSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".tongxun.SecurityPhoneActivity" />
+        <activity android:name=".tongxun.AddBlackNumberActivity"/>
+        <activity android:name=".tongxun.ContactSelectActivity"/>
+        <activity android:name=".ruanjian.AppManagerActivity"/>
+        <activity android:name=".shadu.VirusScanActivity"/>
+        <activity android:name=".shadu.VirusScanSpeedActivity"/>
+        <activity android:name=".huancun.CacheClearListActivity"/>
+        <activity android:name=".jincheng.ProcessMangerActivity"/>
+        <activity android:name=".jincheng.ProcessManagerSettingActivity"/>
+        <activity android:name=".liuliang.OperatorSetActivity"/>
+        <activity android:name=".liuliang.TrafficMonitoringActivity"/>
+        <activity android:name=".gaoji.gaojiActivity"/>
+
+        <receiver android:name=".fangdao.Dialog.reciever.BootCompleteReciever" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- 拦截黑名单信息 -->
+        <receiver android:name=".tongxun.reciever.InterceptSmsReciever" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".tongxun.reciever.InterceptCallReciever" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        <!-- 锁屏自动清理进程 -->
+        <service
+            android:name=".jincheng.service.AutoKillProcessService"
+            android:persistent="true" >
+        </service>
+        <!-- 监控流量的服务 -->
+        <service
+            android:name=".liuliang.server.TrafficMonitoringService"
+            android:persistent="true">
+        </service>
+
+    </application>
+
+</manifest>
+
